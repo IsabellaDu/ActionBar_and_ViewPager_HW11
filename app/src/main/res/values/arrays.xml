@@ -1,0 +1,25 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Normal</item>
+        <item>Italic</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>normal</item>
+        <item>italic</item>
+    </string-array>
+
+
+    <string-array name="color_entries">
+        <item>yellow</item>
+        <item>green</item>
+    </string-array>
+
+    <string-array name="color_values">
+        <item>yellow</item>
+        <item>green</item>
+    </string-array>
+
+
+</resources>
