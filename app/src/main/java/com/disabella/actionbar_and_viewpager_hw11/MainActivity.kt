@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -25,15 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-
         viewPager = findViewById(R.id.viewPager)
         bottomNavigation = findViewById(R.id.bottomNavigation)
-
-        val textOfTab1 = findViewById<TextView>(R.id.text_Tab1)
-        if (sharedPrefs.contains("signature1")) {
-            textOfTab1.text = sharedPrefs.getString("signature1", "your text for tab1")
-        }
 
         viewPager.adapter = ViewPagerAdapter(this)
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -76,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }
 
 class ViewPagerAdapter(activity: MainActivity) : FragmentStateAdapter(activity) {
@@ -88,5 +83,4 @@ class ViewPagerAdapter(activity: MainActivity) : FragmentStateAdapter(activity) 
             else -> throw IllegalArgumentException("Only 2 tabs")
         }
     }
-
 }

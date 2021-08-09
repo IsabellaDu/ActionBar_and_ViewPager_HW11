@@ -1,10 +1,14 @@
 package com.disabella.actionbar_and_viewpager_hw11
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.graphics.blue
+import androidx.preference.PreferenceManager
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +39,27 @@ class Tab1Fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tab1, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(activity)
+        val textOfTab1 = view?.findViewById<TextView>(R.id.text_Tab1)
+        if (sharedPrefs.contains("signature1")) {
+            textOfTab1?.text = sharedPrefs.getString("signature1", "your text for tab1")
+        }
+
+        if (sharedPrefs.contains("font1") && sharedPrefs.getString("font1", "20") != "") {
+            sharedPrefs.getString("font1", null)?.let {
+                textOfTab1?.textSize = it.toFloat()
+            }
+        }
+        if (sharedPrefs.contains("color1")) {
+            when (sharedPrefs.getString("color1", "#CDDC39")) {
+                "yellow" -> getView()?.setBackgroundColor(Color.parseColor("#ffd000"))
+                "green" -> getView()?.setBackgroundColor(Color.parseColor("#0ED600"))
+            }
+        }
     }
 
     companion object {
